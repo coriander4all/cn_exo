@@ -1,10 +1,12 @@
-simple rust program to practice mandarin words.
+Simple rust program to practice mandarin words.
+
 You are prompted a chinese character and must write either the pinyin or the meaning depending on the version.
+
 launch with:
 cargo run -- <version>
 <version> can be either 1 (write pinyin) or 2 (write meaning)
 
-exit with a sophisticated CTRL+C
+exit with a sophisticated CTRL+C or by typing "quit" in stdin (boring)
 
 when writting pinyin:
 	pinyin is written with the tone number after each syllable
