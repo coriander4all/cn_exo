@@ -1,10 +1,9 @@
-//takes a single file as an input, parses and prints it as a csv
-
 use std::env;
 use std::fs::File;
 use std::io::{self, BufRead};
 use std::path::Path;
 use rand::Rng;
+use std::process;
 
 
 fn examine(line: &String, version: usize)->(){
@@ -16,8 +15,23 @@ fn examine(line: &String, version: usize)->(){
 	let mut input = String::new();
 	io::stdin().read_line(&mut input).expect("Failed to read line");
 	input = input.trim().to_string();
+	if input == "quit" {
+		println!("再见！");
+		process::exit(0);
+	}
+
 	println!("correct answer: {}", &sections[version]);
-	if input == sections[version] {
+	let correct: bool = 
+		if version == 2 {
+			let meanings: Vec<String> = sections[version].split("/").map(|s| s.to_string()).collect();
+			meanings.contains(&input)
+		} else if version == 1 {
+			input == sections[version]
+		} else {
+			eprintln!("Exercise type number is incorrect: either 1 or 2");
+			process::exit(1);
+		};
+	if correct{
 		print!("\x1b[38;5;46m");
 	} else {
 		print!("\x1b[38;5;1m");
@@ -36,7 +50,7 @@ fn main() -> io::Result<()> {
 
 	let mut rng = rand::thread_rng();	
 
-	println!("Current directory: {:?}", env::current_dir()); 
+	//println!("Current directory: {:?}", env::current_dir()); 
 	let	file_path = Path::new("./assets/cn.csv");
 	let file = File::open(file_path)?;
 	

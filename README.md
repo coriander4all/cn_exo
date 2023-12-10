@@ -9,7 +9,7 @@ exit with a sophisticated CTRL+C
 when writting pinyin:
 	pinyin is written with the tone number after each syllable
 when writting meaning:
-	write only one of the meanings (NOT IMPLEMENTED YET)
+	write only one of the meanings
 
 All the words are stored in ./assets/cn.csv
 You can add the words respecting the order:
